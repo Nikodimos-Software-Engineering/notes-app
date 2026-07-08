@@ -24,12 +24,12 @@ app.use(rateLimiter);
 app.use("/api/notes", notesRouter);
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 }
 
 app.use((req, res) => {
     if (process.env.NODE_ENV === "production" && !req.path.startsWith('/api/')) {
-        res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+        res.sendFile(path.join(__dirname, "../", "../frontend", "dist", "index.html"));
     } else {
         res.status(404).json({ error: 'Not found' });
     }
