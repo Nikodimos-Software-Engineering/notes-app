@@ -41,7 +41,7 @@ export async function updateNote (req, res){
         const updatedNote = await Note.findByIdAndUpdate(
             req.params.id,
             {title, content},
-            {new: true}
+            { returnDocument: 'after' }
         );
 
         if(!updatedNote) return res.status(404).json({message: "Note not Found!"});
